@@ -10,8 +10,8 @@ script_dir = os.path.dirname(__file__)
 parameters = json.loads(open(f"{script_dir}\config.json").read())
 
 # Telegram Init
-TELE_USE_PROXY=parameters["preferences"]["use_proxy"]
-PROXY= parameters["preferences"]["proxy"]
+TELE_USE_PROXY = parameters["preferences"]["use_proxy"]
+PROXY = parameters["preferences"]["proxy"]
 BOT_TOKEN = parameters["preferences"]["bot_token"]
 PROTOCOL = parameters["preferences"]["protocol"]
 CHATID = parameters["preferences"]["chat_id"]
@@ -39,7 +39,7 @@ state_dictionary = {
     22: "Требуется DHT",
     23: "Поиск пиров",
     24: "Сопоставление",
-    25: "Запись"
+    25: "Запись",
 }
 
 
@@ -102,7 +102,7 @@ def proceed_state():
     hex_val = ""
     torrent_state = 0
     torrent_type = ""
-    strLogName = f"{script_dir}\\app_logs.log"
+    str_log_name = f"{script_dir}\\app_logs.log"
 
     # Init parameters
     parser = argparse.ArgumentParser(description="UTorrent job alert")
@@ -124,19 +124,20 @@ def proceed_state():
     print(args)
 
     file_name = args.f if args.f != "" else file_name
+    previouse_state = int(args.p) if int(args.p) > 0 else previouse_state
+    torrent_state = int(args.s) if int(args.s) > 0 else torrent_state
+
     file_folder = args.d if args.d != "" else file_folder
     torrent_name = args.n if args.n != "" else torrent_name
-    previouse_state = int(args.p) if int(args.p) > 0 else previouse_state
     torrent_label = args.l if args.l != "" else torrent_label
     torrent_tracker = args.t if args.t != "" else torrent_tracker
     status = args.m if args.m != "" else status
     hex_val = args.i if args.i != "" else hex_val
-    torrent_state = int(args.s) if int(args.s) > 0 else torrent_state
     torrent_type = args.k if args.k != "" else torrent_type
 
     # Init logging
     logging.basicConfig(
-        filename=strLogName,
+        filename=str_log_name,
         level=logging.INFO,
         format="%(asctime)s %(levelname)s : %(message)s",
         datefmt="%Y-%m-%d %I:%M:%S %p",
