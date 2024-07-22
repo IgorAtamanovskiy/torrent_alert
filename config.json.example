@@ -1,0 +1,10 @@
+{
+  "preferences":
+    {
+      "bot_token": "",
+      "use_proxy": false,
+      "proxy": "",
+      "protocol": "https",
+      "chat_id": ""
+    }
+}
